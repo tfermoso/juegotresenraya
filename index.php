@@ -2,8 +2,19 @@
 
 require("config/Config.php");
 require("core/router.php");
+require("config/database.php");
 
-if(isset($_GET['c'])){
+if(isset($_POST['c'])){
+		
+    $controlador = cargarControlador($_POST['c']);
+    
+    if(isset($_POST['a'])){
+        cargarAccion($controlador, $_POST['a']);
+    } else {
+        cargarAccion($controlador, ACCION_PRINCIPAL);
+    }
+    
+} else if(isset($_GET['c'])){
 		
     $controlador = cargarControlador($_GET['c']);
     
@@ -13,11 +24,11 @@ if(isset($_GET['c'])){
             } else {
             cargarAccion($controlador, $_GET['a']);
         }
-        } else {
+    } else {
         cargarAccion($controlador, ACCION_PRINCIPAL);
     }
     
-    } else {
+}else {
     
     $controlador = cargarControlador(CONTROLADOR_PRINCIPAL);
     $accionTmp = ACCION_PRINCIPAL;

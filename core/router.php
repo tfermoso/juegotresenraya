@@ -27,5 +27,3 @@ function cargarAccion($controller, $accion, $id = null){
         $controller->ACCION_PRINCIPAL();
     }	
 }
-
-?>
