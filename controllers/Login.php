@@ -9,8 +9,10 @@ require_once("models/Usuario_model.php");
         }
 
         public function index()
-        {
-            
+        {   
+            if(isset($_SESSION["user"])){
+                header("Location: ?c=juego");
+            }      
             require_once("views/login/login.php");
         }
 
@@ -23,6 +25,7 @@ require_once("models/Usuario_model.php");
                 $error="Usuario o contraseña incorrecto";
                 require("views/login/login.php");
             }else{
+                $_SESSION["user"]=$usuarioLogeado;
                 header("Location: ?c=juego");
             }
         }
