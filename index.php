@@ -4,6 +4,8 @@ require("config/Config.php");
 require("core/router.php");
 require("config/database.php");
 
+session_start();
+
 if(isset($_POST['c'])){
 		
     $controlador = cargarControlador($_POST['c']);
@@ -18,7 +20,7 @@ if(isset($_POST['c'])){
 		
     $controlador = cargarControlador($_GET['c']);
     
-    if(isset($_GET['a'])){
+    if(isset($_GET['a']) || isset($_GET[''])){
         if(isset($_GET['id'])){
             cargarAccion($controlador, $_GET['a'], $_GET['id']);
             } else {

@@ -7,6 +7,9 @@ Class LoginController{
     }
 
     public function index(){
+        if(isset($_SESSION["user"])){
+            header("Location: ?c=juego");
+        }
         require_once("views/login/login.php");
     }
 
@@ -21,6 +24,7 @@ Class LoginController{
             $error="Usuario o contraseña incorrecto";
             require_once("views/login/login.php");
         } else {
+            $_SESSION["user"]=$usuarioLogeado;
             header("Location: ?c=juego");
         }
     }

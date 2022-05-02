@@ -14,5 +14,8 @@
 </head>
 <body>
     <h1>Juego Tres en Raya</h1>
+    <?php
+    echo $usuario["usuario"];
+    ?>
 </body>
 </html>
