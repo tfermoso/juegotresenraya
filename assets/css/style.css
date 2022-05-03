@@ -1,3 +1,11 @@
 #loginPage #navbarSupportedContent{
-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+h1{
+    text-align: center;
+}
+
+.usronline{
+    border:1px solid cadetblue;
 }
