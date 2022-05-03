@@ -9,7 +9,8 @@ require_once("models/Usuario_model.php");
                 $usuarios_online=$usuario->getUsuariosOnline();
                 $respuesta="";
                 for ($i=0; $i < count($usuarios_online); $i++) { 
-                    $respuesta.="<li id='".$usuarios_online[$i][0]."'>".$usuarios_online[$i][1]."</li>";
+                    $respuesta.="<li>".$usuarios_online[$i][1]." <a href='?c=juego&a=invitar&id=".$usuarios_online[$i][0]."'>Invitar</a></li>";
+
                 }
                echo $respuesta;
             } 
