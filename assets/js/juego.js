@@ -1,6 +1,6 @@
 window.onload = function () {
 
-
+/*
     setInterval(() => {
         $.ajax(
             {
@@ -11,5 +11,15 @@ window.onload = function () {
             });
     }, 3000);
 
+*/
 
+setInterval(() => {
+    $.ajax(
+        {
+            url: "?c=api&a=partidasenviadas",
+            success: function (result) {
+                $("#partidas_enviadas").html(result);
+            }
+        });
+}, 3000);
 }

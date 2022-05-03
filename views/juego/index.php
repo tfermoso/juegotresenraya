@@ -63,9 +63,17 @@
                             ?>
                         </ul>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <h3>Partidas pendientes de aceptación</h3>
-               
+                        <ul id="partidas_enviadas">
+                            <?php
+                                $li="";
+                                for ($i=0; $i < count($partidas_enviadas); $i++) { 
+                                   $li.="<li id='".$partidas_enviadas[$i][0]."'>".$partidas_enviadas[$i][1]."</li>";
+                                }
+                                echo $li;
+                            ?>
+                        </ul>
                     </div>
                     <div class="row">
                         <h3>Partidas en las que he sido invitado</h3>
