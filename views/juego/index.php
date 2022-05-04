@@ -51,7 +51,8 @@
                         <?php
                                 $divs="";
                                 for ($i=0; $i < count($mis_partidas); $i++) { 
-                                   $divs.="<div>".$mis_partidas[$i][2]."Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></div>";
+                                    $turno=$usuario['idusuario']==$mis_partidas[$i][2]?'miturno':'';
+                                   $divs.="<div  class='".$turno."'> Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></div>";
                                 }
                                 echo $divs;
                             ?>
