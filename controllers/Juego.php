@@ -49,4 +49,13 @@ class JuegoController{
             header("Location: ./");
         }
     }
+
+    public function unirse($idpartida)
+    {      
+        $usuario=new Usuario();
+        if($usuario->unirme($idpartida,$_SESSION["user"]["idusuario"])>0){
+            $this->aceptar($idpartida);
+        }
+        
+    }
 }

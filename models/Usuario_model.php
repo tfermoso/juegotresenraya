@@ -127,6 +127,15 @@ class Usuario{
             return $stm->affected_rows;
         }
     }
+
+    public function unirme($idpartida,$idjugador)
+    {
+        $consultaUnirme="UPDATE partida SET jugador2 = ?  WHERE (idpartida = ?)";
+            $stm=$this->db->prepare($consultaUnirme);
+            $stm->bind_param("ii",$idjugador,$idpartida);
+            $stm->execute();
+            return $stm->affected_rows;
+    }
   
 }
 
