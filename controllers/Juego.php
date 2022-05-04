@@ -11,6 +11,7 @@ class JuegoController{
             $usuarios_online=$usuarios->getUsuariosOnline();
             $partidas_enviadas=$usuarios->partidasEnviadas($usuario["idusuario"]);
             $invitaciones_recibidas=$usuarios->invitacionesrecibidas($usuario["idusuario"]);
+            $partidas_abiertas=$usuarios->partidasAbiertas($usuario["idusuario"]);
             require_once("views/juego/index.php");
         }else{
             header("Location: ./");

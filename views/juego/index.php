@@ -87,8 +87,17 @@
                             ?>
                         </ul>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <h3>Partidas abiertas</h3>
+                        <ul id="partidas_abiertas">
+                            <?php
+                                $li="";
+                                for ($i=0; $i < count($partidas_abiertas); $i++) { 
+                                   $li.="<li>".$partidas_abiertas[$i][1]." <a href='?c=juego&a=unirse&id=".$partidas_abiertas[$i][0]."'>Unirme</a></li>";
+                                }
+                                echo $li;
+                            ?>
+                        </ul>
                     </div>
                 </div>               
             </div>
