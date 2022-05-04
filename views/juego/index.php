@@ -47,6 +47,15 @@
                 <div class="col-7">
                     <div class="row">
                         <h3>Mis partidas</h3>
+                        <div id="mispartidas">
+                        <?php
+                                $divs="";
+                                for ($i=0; $i < count($mis_partidas); $i++) { 
+                                   $divs.="<div>".$mis_partidas[$i][2]."Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></li>";
+                                }
+                                echo $divs;
+                            ?>
+                        </div>
                     </div>
                     <div class="row">
                         <h3>Partidas en Juego</h3>

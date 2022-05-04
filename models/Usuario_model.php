@@ -136,6 +136,19 @@ class Usuario{
             $stm->execute();
             return $stm->affected_rows;
     }
+    public function misPartidas($idusuariolocal)
+    {
+        $partidas=array();
+        $consulta="";
+        $stm=$this->db->prepare($consulta);
+        $stm->bind_param("i",$idusuariolocal);
+        $stm->execute();
+        $result=$stm->get_result();
+        while($partida=$result->fetch_assoc()){ 
+            array_push($partidas_abiertas,array($partida["idpartida"],$partida["nombre"]));  
+        }
+        return $partidas_abiertas;
+    }
   
 }
 
