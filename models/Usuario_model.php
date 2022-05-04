@@ -83,12 +83,70 @@
             $stm=$this->db->prepare($consulta);
             $stm->bind_param("i",$idusuariolocal);
             $stm->execute();
+
             $result=$stm->get_result();
 
             while($partida = $result->fetch_assoc()){
                 array_push($invitaciones_recibidas, array($partida["idpartida"], $partida["nombre"]));
             }
             return $invitaciones_recibidas;
+        }
+
+        public function partidasAbiertas($idusuariolocal)
+        {
+            $partidas_abiertas=array();
+            $consulta="SELECT T1.nombre, T0.idpartida FROM partida T0 INNER JOIN usuario T1 on T0.jugador1 = T1.idusuario WHERE T0.jugador1 <> ? AND T0.jugador2 IS NULL";
+            $stm=$this->db->prepare($consulta);
+            $stm->bind_param("i",$idusuariolocal);
+            $stm->execute();
+            $result=$stm->get_result();
+
+            while($partida = $result->fetch_assoc()){
+                array_push($partidas_abiertas, array($partida["idpartida"], $partida["nombre"]));
+            }
+            return $partidas_abiertas;
+        }
+
+        public function aceptarPartida($idpartida)
+        {
+            $consultaParticipantes = "SELECT jugador1, jugador2 FROM partida WHERE idpartida=?;";
+            $stm=$this->db->prepare($consultaParticipantes);
+            $stm->bind_param("i", $idpartida);
+            $stm->execute();
+            $result=$stm->get_result();
+
+            if($jugadores=$result->fetch_array()){
+                $jugadorTurno=$jugadores[rand(0,1)];
+                $consultaAceptarPartida="UPDATE partida SET jugador_activo = ?, estado =1 WHERE idpartida=?;";
+                $stm=$this->db->prepare($consultaAceptarPartida);
+                $stm->bind_param("ii", $jugadorTurno,$idpartida);
+                $stm->execute();
+                return $stm->affected_rows;
+            }
+        }
+
+        public function unirmePartida($idpartida,$idusuariolocal)
+        {
+            try {
+                $consultaParticipantes = "SELECT jugador1, jugador2 FROM partida WHERE idpartida=?;";
+                $stm=$this->db->prepare($consultaParticipantes);
+                $stm->bind_param("i", $idpartida);
+                $stm->execute();
+                $result=$stm->get_result();
+    
+                if($jugadores=$result->fetch_array()){
+                    $jugadorTurno=$jugadores[rand(0,1)];
+                    $consultaAceptarPartida="UPDATE partida SET jugador2=?, jugador_activo = ?, estado =1 WHERE idpartida=?;";
+                    $stm=$this->db->prepare($consultaAceptarPartida);
+                    $stm->bind_param("iii",$idusuariolocal, $jugadorTurno,$idpartida);
+                    $stm->execute();
+                    return $stm->affected_rows;
+                }            
+            } catch (\Throwable $th) {
+                var_dump($th);
+                die();
+            }
+            
         }
     }
 ?>

@@ -8,7 +8,8 @@ require_once("models/Usuario_model.php");
                 $usuarios = new Usuario();
                 $usuarios_online=$usuarios->getUsuariosOnline();
                 $partidas_enviadas = $usuarios->partidasEnviadas($usuario["idusuario"]);
-                $invitaciones_recibidas = $usuarios->invitacionesrecibidas($usuario["usuario"]);
+                $invitaciones_recibidas = $usuarios->invitacionesrecibidas($usuario["idusuario"]);
+                $partidas_abiertas=$usuarios->partidasAbiertas($usuario["idusuario"]);
                 require_once("views/juego/index.php");
             } else {
                 header("Location: ./");
@@ -22,6 +23,37 @@ require_once("models/Usuario_model.php");
                 $usuarios = new Usuario();
                 $resultado=$usuarios->crearPartida($usuario["idusuario"],$idrival);
                 if(!$resultado){
+                    $error = "Error creando la partida.";
+                }
+                header ("Location: ./?c=juego");
+            } else {
+                header("Location: ./");
+            }
+        }
+
+        public function aceptar($idpartida)
+        {
+            if(isset($_SESSION["user"])){
+                $usuario = $_SESSION["user"];
+                $usuarios = new Usuario();
+                $resultado=$usuarios->aceptarPartida($idpartida);
+                if($resultado<0){
+                    $error = "Error creando la partida.";
+                }
+                header ("Location: ./?c=juego");
+            } else {
+                header("Location: ./");
+            }
+        }
+        
+
+        public function unirme($idpartida)
+        {
+            if(isset($_SESSION["user"])){
+                $usuario = $_SESSION["user"];
+                $usuarios = new Usuario();
+                $resultado=$usuarios->unirmePartida($idpartida,$usuario["idusuario"]);
+                if($resultado<0){
                     $error = "Error creando la partida.";
                 }
                 header ("Location: ./?c=juego");

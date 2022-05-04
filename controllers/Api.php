@@ -29,10 +29,10 @@ Class ApiController{
     {
         $usuario = new Usuario();
         $idusuariolocal=$_SESSION["user"]["idusuario"];
-        $invitacionesrecibidas=$usuario->partidasEnviadas($idusuariolocal);
+        $invitacionesrecibidas=$usuario->invitacionesrecibidas($idusuariolocal);
         $li = "";
         for ($i=0; $i < count($invitacionesrecibidas); $i++) { 
-            $li.="<li id='".$invitacionesrecibidas[$i][0]."'>".$invitacionesrecibidas[$i][1]."</li>";    
+            $li.="<li id='".$invitacionesrecibidas[$i][0]."'>".$invitacionesrecibidas[$i][1]."<a href='?c=juego&a=aceptar&id=".$invitacionesrecibidas[$i][0]."'> Aceptar</a></li>";   
         }
         echo $li;
     }

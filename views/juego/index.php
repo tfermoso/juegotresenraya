@@ -74,8 +74,8 @@
                     <ul id="invitacionesrecibidas">
                         <?php
                             $li = "";
-                            for ($i=0; $i < count($invitacionesrecibidas); $i++) { 
-                                $li.="<li id='".$invitacionesrecibidas[$i][1]."'>".$invitacionesrecibidas[$i][0]."</li>";
+                            for ($i=0; $i < count($invitaciones_recibidas); $i++) { 
+                                $li.="<li id='".$invitaciones_recibidas[$i][0]."'>".$invitaciones_recibidas[$i][1]."<a href='?c=juego&a=aceptar&id=".$invitaciones_recibidas[$i][0]."'> Aceptar</a></li>";
                                 
                             }
                             echo $li;
@@ -84,6 +84,16 @@
                 </div>
                 <div>
                     <h3>Partidas abiertas</h3>
+                    <ul id="partidas_abiertas">
+                        <?php
+                            $li = "";
+                            for ($i=0; $i < count($partidas_abiertas); $i++) { 
+                                $li.="<li id='".$partidas_abiertas[$i][0]."'>".$partidas_abiertas[$i][1]."<a href='?c=juego&a=unirme&id=".$partidas_abiertas[$i][0]."'> Unirse</a></li>";
+                                
+                            }
+                            echo $li;
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>
