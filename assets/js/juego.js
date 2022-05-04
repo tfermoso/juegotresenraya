@@ -1,6 +1,6 @@
 window.onload = function () {
 
-/*
+
     setInterval(() => {
         $.ajax(
             {
@@ -11,7 +11,7 @@ window.onload = function () {
             });
     }, 3000);
 
-*/
+
 
 setInterval(() => {
     $.ajax(
@@ -22,4 +22,5 @@ setInterval(() => {
             }
         });
 }, 3000);
+
 }

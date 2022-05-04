@@ -77,7 +77,22 @@ class Usuario{
         }
         return $partidas_enviadas;
     }
-
+    public function invitacionesrecibidas($idusuariolocal)
+    {
+        $invitaciones_recibidas=array();
+        $consulta="SELECT T1.nombre,T0.idpartida 
+        FROM partida T0 
+        inner join usuario T1 on T1.idusuario=T0.jugador1 
+        where T0.jugador2=? and T0.estado=0";
+        $stm=$this->db->prepare($consulta);
+        $stm->bind_param("i",$idusuariolocal);
+        $stm->execute();
+        $result=$stm->get_result();
+        while($partida=$result->fetch_assoc()){ 
+            array_push($invitaciones_recibidas,array($partida["idpartida"],$partida["nombre"]));  
+        }
+        return $invitaciones_recibidas;
+    }
   
 }
 

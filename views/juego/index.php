@@ -75,8 +75,17 @@
                             ?>
                         </ul>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <h3>Partidas en las que he sido invitado</h3>
+                        <ul id="invitaciones_recibidas">
+                            <?php
+                                $li="";
+                                for ($i=0; $i < count($invitaciones_recibidas); $i++) { 
+                                   $li.="<li>".$invitaciones_recibidas[$i][1]." <a href='?c=juego&a=aceptar&id=".$invitaciones_recibidas[$i][0]."'>Aceptar</a></li>";
+                                }
+                                echo $li;
+                            ?>
+                        </ul>
                     </div>
                     <div class="row">
                         <h3>Partidas abiertas</h3>
