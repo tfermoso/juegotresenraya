@@ -46,5 +46,49 @@
             }
             return $usuarios_online;
         }
+
+        public function crearPartida($idusuariolocal,$idinvitado)
+        {
+            $consulta="INSERT INTO partida (jugador1, jugador2) VALUE (?,?);";
+            $stm = $this->db->prepare($consulta);
+            $stm->bind_param("ii",$idusuariolocal,$idinvitado);
+            $stm->execute();
+            $result = $stm->num_rows();
+            if($result>0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function partidasEnviadas($idusuariolocal)
+        {
+            $partidas_enviadas=array();
+            $consulta="SELECT T1.nombre, T0.idpartida FROM partida T0 INNER JOIN usuario T1 on T0.jugador2 = T1.idusuario WHERE T0.jugador1 = ? AND T0.jugador2 IS NOT NULL AND T0.estado = 0";
+            $stm=$this->db->prepare($consulta);
+            $stm->bind_param("i",$idusuariolocal);
+            $stm->execute();
+            $result=$stm->get_result();
+
+            while($partida = $result->fetch_assoc()){
+                array_push($partidas_enviadas, array($partida["idpartida"], $partida["nombre"]));
+            }
+            return $partidas_enviadas;
+        }
+
+        public function invitacionesrecibidas($idusuariolocal)
+        {
+            $invitaciones_recibidas=array();
+            $consulta="SELECT T1.nombre, T0.idpartida FROM partida T0 INNER JOIN usuario T1 on T0.jugador1 = T1.idusuario WHERE T0.jugador2 = ? AND T0.estado = 0";
+            $stm=$this->db->prepare($consulta);
+            $stm->bind_param("i",$idusuariolocal);
+            $stm->execute();
+            $result=$stm->get_result();
+
+            while($partida = $result->fetch_assoc()){
+                array_push($invitaciones_recibidas, array($partida["idpartida"], $partida["nombre"]));
+            }
+            return $invitaciones_recibidas;
+        }
     }
 ?>

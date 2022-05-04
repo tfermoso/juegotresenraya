@@ -7,5 +7,22 @@ window.onload=function(){
             $("#jugadores").html(result)
         }});
     }, 3000);
-    
+
+
+    setInterval(() => {
+        $.ajax(
+            {url: "?c=api&a=partidasenviadas", 
+            success: function(result){
+                $("#partidas_enviadas").html(result)
+            }});
+        }, 3000);
+
+    setInterval(() => {
+        $.ajax(
+            {url: "?c=api&a=invitacionesrecibidas", 
+            success: function(result){
+                $("#invitacionesrecibidas").html(result)
+            }});
+        }, 3000);
+
 }

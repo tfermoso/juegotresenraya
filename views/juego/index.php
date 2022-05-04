@@ -56,9 +56,35 @@
                         ?>
                     </ul>
                 </div>
-                <div class="row"><h3>Partidas pendientes de aceptacion</h3></div>
-                <div class="row"><h3>Partidas en las que he sido invitado</h3></div>
-                <div class="row">Partidas abiertas</div>
+                <div>
+                    <h3>Partidas pendientes de aceptacion</h3>
+                    <ul id="partidas_enviadas">
+                        <?php
+                            $li = "";
+                            for ($i=0; $i < count($partidas_enviadas); $i++) { 
+                                $li.="<li id='".$partidas_enviadas[$i][0]."'>".$partidas_enviadas[$i][1]."</li>";
+                                
+                            }
+                            echo $li;
+                        ?>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Partidas en las que he sido invitado</h3>
+                    <ul id="invitacionesrecibidas">
+                        <?php
+                            $li = "";
+                            for ($i=0; $i < count($invitacionesrecibidas); $i++) { 
+                                $li.="<li id='".$invitacionesrecibidas[$i][1]."'>".$invitacionesrecibidas[$i][0]."</li>";
+                                
+                            }
+                            echo $li;
+                        ?>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Partidas abiertas</h3>
+                </div>
             </div>
         </div>
     </div>
