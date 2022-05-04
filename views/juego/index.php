@@ -45,13 +45,13 @@
             <h1>Juego del tres en raya</h1>
             <div class="row">
                 <div class="col-7">
-                    <div class="row">
+                    <div class="">
                         <h3>Mis partidas</h3>
                         <div id="mispartidas">
                         <?php
                                 $divs="";
                                 for ($i=0; $i < count($mis_partidas); $i++) { 
-                                   $divs.="<div>".$mis_partidas[$i][2]."Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></li>";
+                                   $divs.="<div>".$mis_partidas[$i][2]."Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></div>";
                                 }
                                 echo $divs;
                             ?>

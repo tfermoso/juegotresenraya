@@ -139,15 +139,21 @@ class Usuario{
     public function misPartidas($idusuariolocal)
     {
         $partidas=array();
-        $consulta="";
+        $consulta="SELECT idpartida,T1.nombre as 'rival',jugador_activo FROM tresenraya.partida T0
+        inner join usuario T1 on T1.idusuario=T0.jugador2
+        where T0.jugador1=? and T0.estado=1 
+        union
+        SELECT idpartida,T1.nombre as 'rival',jugador_activo FROM tresenraya.partida T0
+        inner join usuario T1 on T1.idusuario=T0.jugador1
+        where T0.jugador2=? and T0.estado=1";
         $stm=$this->db->prepare($consulta);
-        $stm->bind_param("i",$idusuariolocal);
+        $stm->bind_param("ii",$idusuariolocal,$idusuariolocal);
         $stm->execute();
         $result=$stm->get_result();
         while($partida=$result->fetch_assoc()){ 
-            array_push($partidas_abiertas,array($partida["idpartida"],$partida["nombre"]));  
+            array_push($partidas,array($partida["idpartida"],$partida["rival"],$partida["jugador_activo"]));  
         }
-        return $partidas_abiertas;
+        return $partidas;
     }
   
 }
