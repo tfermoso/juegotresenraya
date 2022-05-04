@@ -12,6 +12,7 @@ class JuegoController{
             $partidas_enviadas=$usuarios->partidasEnviadas($usuario["idusuario"]);
             $invitaciones_recibidas=$usuarios->invitacionesrecibidas($usuario["idusuario"]);
             $partidas_abiertas=$usuarios->partidasAbiertas($usuario["idusuario"]);
+            $mis_partidas=$usuarios->misPartidas($usuario["idusuario"]);
             require_once("views/juego/index.php");
         }else{
             header("Location: ./");
@@ -55,7 +56,8 @@ class JuegoController{
         $usuario=new Usuario();
         if($usuario->unirme($idpartida,$_SESSION["user"]["idusuario"])>0){
             $this->aceptar($idpartida);
-        }
-        
+        }   
     }
+
+
 }
