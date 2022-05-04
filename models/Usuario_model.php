@@ -110,6 +110,23 @@ class Usuario{
         }
         return $partidas_abiertas;
     }
+
+    public function aceptarPartida($idpartida)
+    {
+        $consultaParticipantes="select jugador1,jugador2 from partida where idpartida=?";
+        $stm=$this->db->prepare($consultaParticipantes);
+        $stm->bind_param("i",$idpartida);
+        $stm->execute();
+        $result=$stm->get_result();
+        if($jugadores=$result->fetch_array()){
+            $jugadorTurno=$jugadores[rand(0,1)];
+            $consultaAceptarPartida="UPDATE partida SET jugador_activo = ?, estado = '1' WHERE (idpartida = ?)";
+            $stm=$this->db->prepare($consultaAceptarPartida);
+            $stm->bind_param("ii",$jugadorTurno,$idpartida);
+            $stm->execute();
+            return $stm->affected_rows;
+        }
+    }
   
 }
 

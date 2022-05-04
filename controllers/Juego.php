@@ -33,4 +33,20 @@ class JuegoController{
             header("Location: ./");
         }
     }
+
+    public function aceptar($idpartida)
+    {
+        if(isset($_SESSION["user"])){
+            $usuario=$_SESSION["user"]; 
+            $usuarios=new Usuario();
+            $resultado=$usuarios->aceptarPartida($idpartida);
+            if($resultado<0){
+                $error="Error aceptando la partida.";
+            }
+            header("Location: ./?c=juego");
+            
+        }else{
+            header("Location: ./");
+        }
+    }
 }
