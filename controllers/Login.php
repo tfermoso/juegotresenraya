@@ -21,7 +21,7 @@ require_once("models/Usuario_model.php");
             $password=$_POST["password"];
             $user=new Usuario();
             $usuarioLogeado=$user->get_usuario($usuario,$password);
-
+       
             if ($usuarioLogeado==NULL) {
                 $error="Usuario o contraseña incorrecto";
                 require("views/login/login.php");
