@@ -5,6 +5,7 @@ class PartidaController{
     {
         if(isset($_SESSION["user"])){
             $usuario=$_SESSION["user"]; 
+            $partida=new Partida();
             
             require_once("views/partida/index.php");
         }else{
@@ -15,6 +16,7 @@ class PartidaController{
     {
         header("Location: ./");
     }
+
 }
 
 ?>

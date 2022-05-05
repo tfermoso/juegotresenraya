@@ -6,8 +6,9 @@
     width: 40px;
 }
 
-.miturno{
+.miturno, .miturno a{
     background-color: green;
+    color: yellow;
 }
 
 .celda{

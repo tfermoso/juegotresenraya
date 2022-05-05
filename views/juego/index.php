@@ -57,7 +57,6 @@
 
     <main class="">
         <div class="cotainer-fluid">
-            <h1>Juego del tres en raya</h1>
             <div class="row">
                 <div class="col-7">
                     <div class="">

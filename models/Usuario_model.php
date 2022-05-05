@@ -168,9 +168,9 @@ class Usuario{
         $stm=$this->db->prepare($consulta);
         $stm->bind_param("sss",$nombre, $usuario, $password);
         $stm->execute();
-        $result=$stm->get_result();
+        $result=$stm->affected_rows;
 
-        return $result->num_rows > 0 ? true : false;
+        return $result > 0 ? true : false;
     }
   
 }

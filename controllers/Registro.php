@@ -24,7 +24,8 @@ require_once("models/Usuario_model.php");
                 var_dump($nombre, $usuario, $password);
                 $user = new Usuario();
                 $registrarUsuario = $user->registarUsuario($nombre, $usuario, $password);
-                
+                $msg="Nuevo usuario registrado ".$nombre;
+                $_SESSION["mensajes"]=array($msg);
                 header("Location: ./");
                 // require("views/login/login.php");
                 // if ($registrarUsuario) {
