@@ -3,47 +3,47 @@ require("config/Config.php");
 require("config/database.php");
 require("core/router.php");
 
-session_start();
+
+    session_start();
 
 
-if (isset($_POST['c'])) {
-    //Cargamos el controlador
-    $controlador = cargarControlador($_POST['c']);
-    if (isset($_POST['a'])) {
-        cargarAccion($controlador, $_POST['a']);
-    } else {
-        cargarAccion($controlador, ACCION_PRINCIPAL);
-    }
-} elseif (isset($_GET['c'])) {
-
-    $controlador = cargarControlador($_GET['c']);
-
-    if (isset($_GET['a']) || isset($_POST[""])) {
-        if (isset($_GET['id'])) {
-
-            cargarAccion($controlador, $_GET['a'], $_GET['id']);
+    if (isset($_POST['c'])) {
+        //Cargamos el controlador
+        $controlador = cargarControlador($_POST['c']);
+        
+        if (isset($_POST['a'])) {
+            cargarAccion($controlador, $_POST['a']);
         } else {
             cargarAccion($controlador, ACCION_PRINCIPAL);
         }
-    } elseif (isset($_GET['c'])) {
 
+    } elseif (isset($_GET['c'])) {
         $controlador = cargarControlador($_GET['c']);
 
         if (isset($_GET['a']) || isset($_POST[""])) {
             if (isset($_GET['id'])) {
-
                 cargarAccion($controlador, $_GET['a'], $_GET['id']);
             } else {
-                cargarAccion($controlador, $_GET['a']);
+                cargarAccion($controlador, ACCION_PRINCIPAL);
             }
-        } else {
 
-            cargarAccion($controlador, ACCION_PRINCIPAL);
+        } elseif (isset($_GET['c'])) {
+            $controlador = cargarControlador($_GET['c']);
+
+            if (isset($_GET['a']) || isset($_POST[""])) {
+                if (isset($_GET['id'])) {
+                    cargarAccion($controlador, $_GET['a'], $_GET['id']);
+                } else {
+                    cargarAccion($controlador, $_GET['a']);
+                }
+
+            } else {
+                cargarAccion($controlador, ACCION_PRINCIPAL);
+            }
         }
-    }
-} else {
 
-    $controlador = cargarControlador(CONTROLADOR_PRINCIPAL);
-    $accionTmp = ACCION_PRINCIPAL;
-    $controlador->$accionTmp();
-}
+    } else {
+        $controlador = cargarControlador(CONTROLADOR_PRINCIPAL);
+        $accionTmp = ACCION_PRINCIPAL;
+        $controlador->$accionTmp();
+    }

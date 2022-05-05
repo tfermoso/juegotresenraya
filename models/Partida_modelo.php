@@ -1,6 +1,8 @@
 <?php 
 
-class Partida{
-    
-}
+
+    class Partida {
+        
+        
+    }
 ?>

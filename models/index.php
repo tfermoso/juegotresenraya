@@ -1,3 +1,4 @@
 <?php
-header("Location: /tresenraya");
+
+    header("Location: /tresenraya");
 ?>

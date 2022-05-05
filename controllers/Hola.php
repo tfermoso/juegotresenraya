@@ -1,10 +1,12 @@
 <?php
 
-class HolaController{
-    public function saludar()
-    {
-       echo "hola mundo";
-       die();
+
+    class HolaController {
+
+        public function saludar()
+        {
+            echo "hola mundo";
+            die();
+        }
     }
-}
 ?>

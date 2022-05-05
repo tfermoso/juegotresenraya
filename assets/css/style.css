@@ -1,25 +1,58 @@
+
 #loginPage #navbarSupportedContent {
     flex-direction: row-reverse;
 }
 
-.logo{
+.logo {
     width: 40px;
 }
 
-.miturno, .miturno a{
+.miturno, .miturno a {
     background-color: green;
     color: yellow;
 }
 
-.celda{
+.celda {
     width: 200px;
     height: 200px;
     border: 1px solid black;
 }
-.fila{
+
+.fila {
     display: flex;
 }
-#tablero{
+
+#tablero {
     width: 606px;
     margin: 0 auto;
+}
+
+.register-form, .login-form {
+    margin-top: 50px;
+}
+
+#c_btnsubmit {
+    margin-top: 60px;
+}
+
+#btnsubmit {
+    font-weight: bold;
+}
+
+#cabecera-login-reg {
+    margin-top: 20px;
+}
+
+#cabecera-formulario {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#contenido-formulario {
+    margin-top: 30px;
+}
+
+#registro-pass {
+    margin-top: 30px;
 }

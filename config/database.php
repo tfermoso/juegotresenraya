@@ -1,8 +1,10 @@
 <?php
 
-    class Conectar
-    {
-        public static function conexion(){
+
+    class Conectar {
+
+        public static function conexion()
+        {
             $conexion= new mysqli("localhost","root","","tresenraya");
             return $conexion;
         }

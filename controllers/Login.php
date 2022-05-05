@@ -1,7 +1,8 @@
 <?php
 require_once("models/Usuario_model.php");
 
-    class LoginController{
+
+    class LoginController {
 
         public function __construct()
         {
@@ -10,9 +11,10 @@ require_once("models/Usuario_model.php");
 
         public function index()
         {   
-            if(isset($_SESSION["user"])){
+            if (isset($_SESSION["user"])) {
                 header("Location: ?c=juego");
-            }      
+            }
+
             require_once("views/login/login.php");
         }
 

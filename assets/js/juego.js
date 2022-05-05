@@ -1,7 +1,7 @@
 
-window.onload = function () {
+window.onload = () => {
 
-/*
+    // REFRESCO PANEL USUARIOS ONLINE
     setInterval(() => {
         $.ajax({
             url: "?c=api",
@@ -11,7 +11,7 @@ window.onload = function () {
         });
     }, 1500);
 
-
+    // REFRESCO PANEL PARTIDAS ? INVITACIONES
     setInterval(() => {
         $.ajax({
             url: "?c=api&a=partidasenviadas",
@@ -21,7 +21,6 @@ window.onload = function () {
         });
     }, 1500);
 
-*/
 
-    
+
 }

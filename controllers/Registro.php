@@ -1,7 +1,8 @@
 <?php
 require_once("models/Usuario_model.php");
 
-    class RegistroController{
+
+    class RegistroController {
 
         public function __construct()
         {
@@ -10,32 +11,24 @@ require_once("models/Usuario_model.php");
 
         public function index()
         {   
-            if(isset($_SESSION["user"])){
+            if (isset($_SESSION["user"])) {
                 header("Location: ?c=juego");
             }      
             require_once("views/registro/registro.php");
         }
 
-        public function registrarse(){
+        public function registrarse() {
+
             try {
                 $nombre = $_POST["nombre"];
                 $usuario = $_POST["usuario"];
                 $password = $_POST["password"];
-                var_dump($nombre, $usuario, $password);
                 $user = new Usuario();
                 $registrarUsuario = $user->registarUsuario($nombre, $usuario, $password);
                 $msg="Nuevo usuario registrado ".$nombre;
                 $_SESSION["mensajes"]=array($msg);
                 header("Location: ./");
-                // require("views/login/login.php");
-                // if ($registrarUsuario) {
-                //     $error = "Usuario o contraseña incorrecto";
-                //     require("views/login/login.php");
-    
-                // } else {
-                //     $_SESSION["user"] = $registrarUsuario;
-                //     header("Location: ?c=juego");
-                // }
+                
             } catch (\Throwable $th) {
                 var_dump($th);
                 die();

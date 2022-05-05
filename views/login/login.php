@@ -1,10 +1,10 @@
 <?php
 
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,27 +21,14 @@
 
 <body id="loginPage">
 
-    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-        <div class="container">
-            <a class="navbar-brand" href="#">Juego de Tres en Raya</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="?c=registro">Register</a>
-                    </li>
-                </ul>
-
-            </div>
+    <!-- CABECERA -->
+    <div class="row">
+        <div class="mx-auto" id="cabecera-login-reg">
+            <img src="assets/img/logo3.webp">
         </div>
-    </nav>
+    </div>
 
+    <!-- FORMULARIO -->
     <main class="login-form">
         <div class="cotainer">
             <?php
@@ -52,28 +39,31 @@
             }
             ?>
             <div class="row justify-content-center">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <div class="card">
-                        <div class="card-header">Login</div>
-                        <div class="card-body">
+                        <div class="card-header" id="cabecera-formulario">
+                            LOGIN APLICACIÓN <br><a href="?c=registro">- Ir a Registro -</a>
+                        </div>
+                        <div class="card-body" id="contenido-formulario">
+
                             <form action="" method="post">
                                 <input type="hidden" name="c" value="Login">
                                 <input type="hidden" name="a" value="logearse">
                                 <div class="form-group row">
-                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">User</label>
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">Usuario</label>
                                     <div class="col-md-6">
                                         <input type="text" id="email_address" class="form-control" name="usuario" required autofocus>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
                                     <div class="col-md-6">
                                         <input type="password" id="password" class="form-control" name="password" required>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="checkbox">
                                             <label>
@@ -81,25 +71,22 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-8 mx-auto" id="c_btnsubmit">
+                                    <button type="submit" class="btn btn-primary btn-block" id="btnsubmit">
                                         Login
                                     </button>
-                                    <!-- <a href="#" class="btn btn-link">
-                                    Forgot Your Password?
-                                </a> -->
                                 </div>
                             </form>
+
                         </div>
                         <p><?php if (isset($error)) echo $error; ?></p>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </main>
-</body>
 
+</body>
 </html>
