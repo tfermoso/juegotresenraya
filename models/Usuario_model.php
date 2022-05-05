@@ -34,6 +34,7 @@ class Usuario{
 
         return $stm->affected_rows;
     }
+    
     public function getUsuariosOnline()
     {
        $usuarios_online=array();
@@ -121,6 +122,7 @@ class Usuario{
         $stm->bind_param("i",$idpartida);
         $stm->execute();
         $result=$stm->get_result();
+
         if ($jugadores = $result->fetch_array()) {
             $jugadorTurno=$jugadores[rand(0,1)];
             $consultaAceptarPartida="UPDATE partida SET jugador_activo = ?, estado = '1' WHERE (idpartida = ?)";
