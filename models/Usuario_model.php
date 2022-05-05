@@ -37,7 +37,8 @@ class Usuario{
     public function getUsuariosOnline()
     {
        $usuarios_online=array();
-       $consulta="SELECT *  FROM tresenraya.usuario where TIMESTAMPDIFF(MINUTE,estado,now())<10 and idusuario<>".$_SESSION['user']['idusuario'];
+       $consulta="SELECT * FROM usuario where TIMESTAMPDIFF(MINUTE,estado,now())<10 and idusuario<>".$_SESSION['user']['idusuario'];
+
        $stm=$this->db->prepare($consulta);
        $stm->execute();
        $result=$stm->get_result();
