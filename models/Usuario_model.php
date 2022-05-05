@@ -34,6 +34,7 @@ class Usuario{
 
         return $stm->affected_rows;
     }
+    
     public function getUsuariosOnline()
     {
        $usuarios_online=array();
@@ -120,6 +121,7 @@ class Usuario{
         $stm->bind_param("i",$idpartida);
         $stm->execute();
         $result=$stm->get_result();
+
         if ($jugadores = $result->fetch_array()) {
             $jugadorTurno=$jugadores[rand(0,1)];
             $consultaAceptarPartida="UPDATE partida SET jugador_activo = ?, estado = '1' WHERE (idpartida = ?)";
@@ -168,9 +170,9 @@ class Usuario{
         $stm=$this->db->prepare($consulta);
         $stm->bind_param("sss",$nombre, $usuario, $password);
         $stm->execute();
-        $result=$stm->get_result();
+        $result=$stm->affected_rows;
 
-        return $result->num_rows > 0 ? true : false;
+        return $result > 0 ? true : false;
     }
   
 }
