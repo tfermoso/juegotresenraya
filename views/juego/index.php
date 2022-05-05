@@ -28,6 +28,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#"><?php echo $usuario["usuario"]; ?></a>
+                    <a class="nav-link" href="?c=juego&a=cerrarSesion">Cerrar sesion</a>
                 </li>
             </ul>
 
@@ -40,7 +41,19 @@
         <h1>Juego del tres en raya</h1>
         <div class="row">
             <div class="col-7">
-                <div class="row"><h3>Mis partidas</h3></div>
+                <div class="row">
+                    <h3>Mis partidas</h3>
+                    <div id="mispartidas">
+                        <?php
+                            $divs = "";
+                            for ($i=0; $i < count($mis_partidas); $i++) { 
+                                $turno=$usuario['idusuario']==$mis_partidas[$i][2]? 'mi turno' : '';
+                                $divs.="<div>".$mis_partidas[$i][2]."Partida con ".$mis_partidas[$i][1]."<a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'> Entrar</a>".$turno."</div>";
+                            }
+                            echo $divs;
+                        ?>
+                    </div>
+                </div>
                 <div class="row"><h3>Partidas en juego</h3></div>
             </div>
             <div class="col-5">

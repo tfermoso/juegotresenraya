@@ -9,3 +9,18 @@ h1{
 .usronline{
     border:1px solid cadetblue;
 }
+
+.celda{
+    width:200px;
+    height: 200px;
+    border: 1px solid cadetblue;
+}
+
+.fila{
+    display: flex;
+}
+
+#tablero{
+    width: 606px;
+    margin: 0 auto;
+}

@@ -10,6 +10,7 @@ require_once("models/Usuario_model.php");
                 $partidas_enviadas = $usuarios->partidasEnviadas($usuario["idusuario"]);
                 $invitaciones_recibidas = $usuarios->invitacionesrecibidas($usuario["idusuario"]);
                 $partidas_abiertas=$usuarios->partidasAbiertas($usuario["idusuario"]);
+                $mis_partidas=$usuarios->misPartidas($usuario["idusuario"]);
                 require_once("views/juego/index.php");
             } else {
                 header("Location: ./");
@@ -60,6 +61,13 @@ require_once("models/Usuario_model.php");
             } else {
                 header("Location: ./");
             }
+        }
+
+        public function cerrarSesion()
+        {
+            session_unset();
+            session_destroy();
+            header("Location: ./");
         }
     }
 ?>

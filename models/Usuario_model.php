@@ -148,5 +148,40 @@
             }
             
         }
+
+        public function misPartidas($idusuariolocal)
+        {
+            $partidas=array();
+            $consulta="SELECT idpartida, T1.nombre as 'rival', jugador_activo FROM partida T0 INNER JOIN usuario T1 on T1.idusuario=T0.jugador2 WHERE T0.jugador1=? and T0.estado=1 UNION SELECT idpartida, T1.nombre as 'rival', jugador_activo FROM partida T0 INNER JOIN usuario T1 ON T1.idusuario=T0.jugador1 WHERE T0.jugador2=? AND T0.estado=1;";
+            $stm=$this->db->prepare($consulta);
+            $stm->bind_param("ii",$idusuariolocal,$idusuariolocal);
+            $stm->execute();
+            $result=$stm->get_result();
+
+            while($partida = $result->fetch_assoc()){
+                array_push($partidas, array($partida["idpartida"], $partida["rival"],$partida["jugador_activo"]));
+            }
+            return $partidas;
+        }
+
+        public function registrarusuario($nombre, $nombreUsuario, $pass)
+        {
+            try{
+                $consulta = "INSERT INTO usuario (nombre,usuario,password) VALUE (?,?,?);";
+                $stm = $this->db->prepare($consulta);
+                $stm->bind_param("sss",$nombre,$nombreUsuario,$pass);
+                $stm->execute();
+
+                $result=$stm->affected_rows;
+                if($result>0){
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (\Throwable $e){
+                var_dump($e);
+                die();
+            }
+        }
     }
 ?>
