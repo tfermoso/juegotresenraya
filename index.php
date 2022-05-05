@@ -6,6 +6,7 @@ session_start();
 
 
 if (isset($_POST['c'])) {
+    //Cargamos el controlador
     $controlador = cargarControlador($_POST['c']);
     if (isset($_POST['a'])) {
         cargarAccion($controlador, $_POST['a']);
