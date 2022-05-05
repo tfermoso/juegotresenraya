@@ -27,11 +27,11 @@ class Usuario{
 
     public function keepAlive()
     {
-        $consulta="UPDATE `tresenraya`.`usuario` SET `estado` = now() WHERE (`idusuario` = ?);
-        ";
+        $consulta="UPDATE `tresenraya`.`usuario` SET `estado` = now() WHERE (`idusuario` = ?);";
         $stm=$this->db->prepare($consulta);
         $stm->bind_param("i",$_SESSION["user"]["idusuario"]);
         $stm->execute();   
+
         return $stm->affected_rows;
     }
     public function getUsuariosOnline()
@@ -41,6 +41,7 @@ class Usuario{
        $stm=$this->db->prepare($consulta);
        $stm->execute();
        $result=$stm->get_result();
+
        while($user=$result->fetch_assoc()){ 
            array_push($usuarios_online,array($user["idusuario"],$user["nombre"]));  
        }
@@ -54,11 +55,8 @@ class Usuario{
        $stm->bind_param("ii",$idusuariolocal,$idinvitado);
        $stm->execute();
        $result=$stm->num_rows();
-       if($result>0){
-           return true;
-       }else{
-           return false;
-       }
+
+       return $result > 0 ? true : false;
     }
 
     public function partidasEnviadas($idusuariolocal)
@@ -72,11 +70,13 @@ class Usuario{
         $stm->bind_param("i",$idusuariolocal);
         $stm->execute();
         $result=$stm->get_result();
+
         while($partida=$result->fetch_assoc()){ 
             array_push($partidas_enviadas,array($partida["idpartida"],$partida["nombre"]));  
         }
         return $partidas_enviadas;
     }
+
     public function invitacionesrecibidas($idusuariolocal)
     {
         $invitaciones_recibidas=array();
@@ -88,6 +88,7 @@ class Usuario{
         $stm->bind_param("i",$idusuariolocal);
         $stm->execute();
         $result=$stm->get_result();
+
         while($partida=$result->fetch_assoc()){ 
             array_push($invitaciones_recibidas,array($partida["idpartida"],$partida["nombre"]));  
         }
@@ -105,6 +106,7 @@ class Usuario{
         $stm->bind_param("i",$idusuariolocal);
         $stm->execute();
         $result=$stm->get_result();
+
         while($partida=$result->fetch_assoc()){ 
             array_push($partidas_abiertas,array($partida["idpartida"],$partida["nombre"]));  
         }
@@ -118,12 +120,13 @@ class Usuario{
         $stm->bind_param("i",$idpartida);
         $stm->execute();
         $result=$stm->get_result();
-        if($jugadores=$result->fetch_array()){
+        if ($jugadores = $result->fetch_array()) {
             $jugadorTurno=$jugadores[rand(0,1)];
             $consultaAceptarPartida="UPDATE partida SET jugador_activo = ?, estado = '1' WHERE (idpartida = ?)";
             $stm=$this->db->prepare($consultaAceptarPartida);
             $stm->bind_param("ii",$jugadorTurno,$idpartida);
             $stm->execute();
+
             return $stm->affected_rows;
         }
     }
@@ -131,11 +134,13 @@ class Usuario{
     public function unirme($idpartida,$idjugador)
     {
         $consultaUnirme="UPDATE partida SET jugador2 = ?  WHERE (idpartida = ?)";
-            $stm=$this->db->prepare($consultaUnirme);
-            $stm->bind_param("ii",$idjugador,$idpartida);
-            $stm->execute();
-            return $stm->affected_rows;
+        $stm=$this->db->prepare($consultaUnirme);
+        $stm->bind_param("ii",$idjugador,$idpartida);
+        $stm->execute();
+
+        return $stm->affected_rows;
     }
+
     public function misPartidas($idusuariolocal)
     {
         $partidas=array();
@@ -150,10 +155,22 @@ class Usuario{
         $stm->bind_param("ii",$idusuariolocal,$idusuariolocal);
         $stm->execute();
         $result=$stm->get_result();
+
         while($partida=$result->fetch_assoc()){ 
             array_push($partidas,array($partida["idpartida"],$partida["rival"],$partida["jugador_activo"]));  
         }
         return $partidas;
+    }
+
+    public function registarUsuario($nombre, $usuario, $password)
+    {
+        $consulta="insert into usuario (nombre, usuario, password) value (?,?,?)";
+        $stm=$this->db->prepare($consulta);
+        $stm->bind_param("sss",$nombre, $usuario, $password);
+        $stm->execute();
+        $result=$stm->get_result();
+
+        return $result->num_rows > 0 ? true : false;
     }
   
 }

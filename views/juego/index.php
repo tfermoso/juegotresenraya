@@ -1,5 +1,14 @@
 <?php
 
+    // if (isset($_POST["cerrarSesion"])) {
+    //     // eliminar todas las variables de sesión
+    //     session_unset();
+    //     // destruir la sesión
+    //     session_destroy();
+    //     // refrescar página, sin sesión redirigirá a login
+    //     header("Refresh:0");
+    // }
+    
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +41,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        <!-- INFO DE USUARIO Y CIERRE DE SESIÓN -->
                         <a class="nav-link" href=""><?php echo $usuario["usuario"]; ?></a>
+                        <form action="" method="post">
+                            <input type="hidden" name="c" value="Login">
+                            <input type="hidden" name="a" value="cerrarSesion">
+                            <input type="submit" value="Cerrar Sesión">
+                        </form>
                     </li>
                 </ul>
 
@@ -49,13 +64,13 @@
                         <h3>Mis partidas</h3>
                         <div id="mispartidas">
                         <?php
-                                $divs="";
-                                for ($i=0; $i < count($mis_partidas); $i++) { 
-                                    $turno=$usuario['idusuario']==$mis_partidas[$i][2]?'miturno':'';
-                                   $divs.="<div  class='".$turno."'> Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></div>";
-                                }
-                                echo $divs;
-                            ?>
+                            $divs="";
+                            for ($i=0; $i < count($mis_partidas); $i++) { 
+                                $turno=$usuario['idusuario']==$mis_partidas[$i][2]?'miturno':'';
+                                $divs.="<div  class='".$turno."'> Partida con ".$mis_partidas[$i][1]." <a href='?c=partida&a=jugar&id=".$mis_partidas[$i][0]."'>entrar</a></div>";
+                            }
+                            echo $divs;
+                        ?>
                         </div>
                     </div>
                     <div class="row">
