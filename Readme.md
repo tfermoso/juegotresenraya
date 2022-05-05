@@ -1,42 +1,38 @@
-AplicaciÛn web para jugar al tres en raya.
-Es multijugador
--La aplicaciÛn tienen usuarios
-	-nombre
-	-usuario
-	-pass
-	-estado
-Partidas 
-	-jugador1
-	-jugador2
-	-turno
-	-celdas( X9)
-	-ganador
-Salas
-	-IdPartida
-	-idUsuario
-	-marcaDeTiempo
-Retos
-	-jugador1
-	-jugador2
-	-estado
+Tres en Raya
+============
 
-Perfil de usuario:
-Jugador
-Usuario
+Aplicaci√≥n web multijugador online del conocido y famoso juego [***Tres en Raya***](https://es.wikipedia.org/wiki/Tres_en_l%C3%ADnea).
+
+Tecnolog√≠as empleadas en la realizaci√≥n del proyecto:
+- **Lenguajes entorno cliente**: HTML, CSS, JS.
+- **Lenguajes entorno servidor**: PHP.
+- **Librer√≠as**: Bootstrap, jQuery.
+
+
+Tablas BBDD
+-----------
+- usuarios (idusuario, nombre, usuario, pass, estado)
+- partidas (idpartida, jugador1, jugador2, jugador_activo, celda0 - celda8, turno, estado)
+- salas (idpartida, idusuario, marcaDeTiempo)
+- retos (jugador1, jugador2, estado)
+
+Perfiles de usuario
+-------------------
+- Usuario
+- Jugador
+
 Casos de Uso
--Usuario
-	-Registrarse
-	-Login
--Jugador
-	-Ver partidas en juego del servidor (jugador 1 y jugador 2)
-	-Ver clasificaciÛn
-	-AÒadirse a una partida ( Jugador1)
-	-Crear una partida ( y ponerse como jugador1)
-	-buscadorDePartidas()
-	-turno jugarPartida
-	-Retar a otro jugador
-	-salir
-
+------------
+- Usuario
+  - Registrarse
+  - Logearse
+- Jugador
+	- Ver partidas en juego del servidor (jugador 1 y jugador 2)
+	- Ver clasificaci√≥n
+	- A√±adirse a una partida (jugador1)
+	- Crear una partida (y ponerse como jugador1)
+	- M√©todo buscadorDePartidas()
+	- Turno jugarPartida
+	- Retar a otro jugador
+	- Salir
 	
-
-
