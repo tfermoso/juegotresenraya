@@ -28,11 +28,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="?c=registro">Register</a>
+                    <a class="nav-link" href="?c=login">Login</a>
                 </li>
             </ul>
 
@@ -45,13 +42,20 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header">Registro de Usuario</div>
                     <div class="card-body">
                         <form action="" method="post">
-                            <input type="hidden" name="c" value="Login">
-                            <input type="hidden" name="a" value="logearse">
+                            <input type="hidden" name="c" value="Registro">
+                            <input type="hidden" name="a" value="registrarse">
                             <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">User</label>
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Nombre real</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="email_address" class="form-control" name="nombre" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Nombre usuario</label>
                                 <div class="col-md-6">
                                     <input type="text" id="email_address" class="form-control" name="usuario" required autofocus>
                                 </div>
@@ -65,18 +69,18 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
+                                <!-- <div class="col-md-6 offset-md-4">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="remember"> Remember Me
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    Registrar Usuario
                                 </button>
                                 <!-- <a href="#" class="btn btn-link">
                                     Forgot Your Password?
