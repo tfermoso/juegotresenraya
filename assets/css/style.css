@@ -9,3 +9,16 @@
 .miturno{
     background-color: green;
 }
+
+.celda{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+.fila{
+    display: flex;
+}
+#tablero{
+    width: 606px;
+    margin: 0 auto;
+}
