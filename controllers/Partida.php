@@ -1,13 +1,14 @@
 <?php
-
+require_once("models/Partida_model.php");
 
     class PartidaController {
 
-        public function jugar($id)
-        {
+        
+        public function jugar($id) {
+            
             if (isset($_SESSION["user"])) {
-                $usuario=$_SESSION["user"]; 
-                $partida=new Partida();
+                $usuario = $_SESSION["user"]; 
+                $partida = new Partida($id);
                 require_once("views/partida/index.php");
                 
             } else {
@@ -15,8 +16,8 @@
             }
         }
 
-        public function index()
-        {
+        public function index() {
+
             header("Location: ./");
         }
 
