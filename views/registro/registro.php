@@ -24,7 +24,7 @@
     <!-- CABECERA -->
     <div class="row">
         <div class="mx-auto" id="cabecera-login-reg">
-            <img src="assets/img/logo3.webp">
+            <img src="assets/img/logo2.webp">
         </div>
     </div>
 
