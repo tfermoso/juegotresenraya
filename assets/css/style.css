@@ -14,11 +14,24 @@
     width: 200px;
     height: 200px;
     border: 1px solid black;
+    font-size: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .fila{
     display: flex;
 }
 #tablero{
+    display: flex;
+    flex-wrap: wrap;
     width: 606px;
     margin: 0 auto;
+}
+.jugador{
+    text-align: center;
+}
+.miturno{
+    background-color: green;
+    color: white;
 }

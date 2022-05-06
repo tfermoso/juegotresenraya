@@ -42,24 +42,31 @@
 
     <main class="">
         <div class="cotainer-fluid">
-            <h1>Juego del tres en raya</h1>
-            <section id="tablero">
-                <div class="fila">
-                    <div class="celda"></div>
-                    <div class="celda"></div>
-                    <div class="celda"></div>
+            <div class="row">
+                <div class="col-2 jugador <?php echo ($usuario['idusuario']==$partida->getIdJugador1())?($partida->getJugadorActivo()==$usuario['idusuario']?'miturno':'sinturno'):''; ?>"><?php echo $partida->getNombreJugador1(); ?></div>
+                <div class="col-8">
+                    <section id="tablero">
+                        <?php
+                        $celdas="";
+                        for ($i=0; $i <count($partida->getCeldas()) ; $i++) { 
+                            $valorCelda="";
+                            if($partida->getCeldas()[$i]==$usuario["idusuario"]){
+                                $valorCelda="x";
+                            }elseif($partida->getCeldas()[$i]==-1){
+                                $valorCelda="";
+                            }else{
+                                $valorCelda="o";
+                            }
+                            $celdas.="<div class='celda'>".$valorCelda."</div>";
+                        }
+                        echo $celdas;
+                         ?>
+                           
+
+                    </section>
                 </div>
-                <div class="fila">
-                    <div class="celda"></div>
-                    <div class="celda"></div>
-                    <div class="celda"></div>
-                </div>
-                <div class="fila">
-                    <div class="celda"></div>
-                    <div class="celda"></div>
-                    <div class="celda"></div>
-                </div>
-            </section>
+                <div class="col-2 jugador <?php echo ($usuario['idusuario']==$partida->getIdJugador2())?($partida->getJugadorActivo()==$usuario['idusuario']?'miturno':'sinturno'):''; ?>"><?php echo $partida->getNombreJugador2(); ?></div>
+            </div>
         </div>
     </main>
 </body>
