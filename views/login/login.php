@@ -24,7 +24,7 @@
     <!-- CABECERA -->
     <div class="row">
         <div class="mx-auto" id="cabecera-login-reg">
-            <img src="assets/img/logo3.webp">
+            <img src="assets/img/logo2.webp">
         </div>
     </div>
 
@@ -62,16 +62,6 @@
                                         <input type="password" id="password" class="form-control" name="password" required>
                                     </div>
                                 </div>
-
-                                <!-- <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="remember"> Remember Me
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> -->
 
                                 <div class="col-md-8 mx-auto" id="c_btnsubmit">
                                     <button type="submit" class="btn btn-primary btn-block" id="btnsubmit">
