@@ -35,7 +35,7 @@ class Partida{
     {
        return $this->idjugador2;
     }
-    public function getIdPardida()
+    public function getIdPartida()
     {
         return $this->idpartida;
     }
@@ -91,6 +91,42 @@ class Partida{
            }
            //array_push($this->celdas,$datos["casilla0"],$datos["casilla1"],$datos["casilla2"],$datos["casilla3"],$datos["casilla4"],$datos["casilla5"],$datos["casilla6"],$datos["casilla7"],$datos["casilla8"]);
        }
+    }
+
+    public function mover($casilla,$idusuario,$idpartida)
+    {
+       $jugador_turno=$idusuario==$this->idjugador1?$this->idjugador2:$this->idjugador1;
+       $consulta="UPDATE partida SET ".$casilla." = ".$idusuario.",jugador_activo=".$jugador_turno." WHERE (`idpartida` = ".$idpartida.")";
+       $stm=$this->db->prepare($consulta);
+       $stm->execute();
+       return $result=$stm->affected_rows;
+    }
+
+    public function resultadoPartida()
+    {
+        for ($i=0; $i <7 ; $i=$i+3) { 
+            if($this->celdas[$i]==$this->celdas[$i+1] & $this->celdas[$i]==$this->celdas[$i+2]){
+                return $this->celdas[$i];
+            }
+        }
+        for ($i=0; $i <3 ; $i++) { 
+            if($this->celdas[$i]==$this->celdas[$i+3] & $this->celdas[$i]==$this->celdas[$i+6]){
+                return $this->celdas[$i];
+            }
+        }
+        if($this->celdas[0]==$this->celdas[4] & $this->celdas[0]==$this->celdas[8]){
+            return $this->celdas[0];
+        }   
+        if($this->celdas[2]==$this->celdas[4] & $this->celdas[2]==$this->celdas[6]){
+            return $this->celdas[2];
+        }  
+        for ($i=0; $i < count($this->celdas); $i++) { 
+            if($this->celdas[$i]==-1){
+                return -1;
+            }
+        }
+        return 0;
+
     }
 }
 
