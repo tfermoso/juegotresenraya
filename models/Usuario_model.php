@@ -164,7 +164,8 @@ class Usuario{
     }
 
     public function registarUsuario($nombre, $usuario, $password)
-    {
+    {   
+        try{
         $consulta="insert into usuario (nombre, usuario, password) value (?,?,?)";
         $stm=$this->db->prepare($consulta);
         $stm->bind_param("sss",$nombre, $usuario, $password);
@@ -172,6 +173,15 @@ class Usuario{
         $result=$stm->get_result();
 
         return $result->num_rows > 0 ? true : false;
+        }catch( Exception $ex){
+            if(isset($_SESSION["msg"])){
+                $_SESSION["msg"].=" Error al registrar el usuario \n".$ex->getMessage();
+            }else{
+                $_SESSION["msg"]=" Error al registrar el usuario \n".$ex->getMessage();
+            }
+            return false;
+        }
+        
     }
   
 }

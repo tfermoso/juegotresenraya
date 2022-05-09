@@ -10,6 +10,7 @@ require_once("models/Usuario_model.php");
 
         public function index()
         {   
+ 
             if(isset($_SESSION["user"])){
                 header("Location: ?c=juego");
             }      
@@ -21,10 +22,12 @@ require_once("models/Usuario_model.php");
                 $nombre = $_POST["nombre"];
                 $usuario = $_POST["usuario"];
                 $password = $_POST["password"];
-                var_dump($nombre, $usuario, $password);
                 $user = new Usuario();
                 $registrarUsuario = $user->registarUsuario($nombre, $usuario, $password);
-                
+                if($registrarUsuario==false){
+                    var_dump($_SESSION);
+                    die();
+                }
                 header("Location: ./");
                 // require("views/login/login.php");
                 // if ($registrarUsuario) {

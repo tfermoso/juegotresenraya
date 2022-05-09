@@ -11,7 +11,10 @@ require_once("models/Usuario_model.php");
         public function index()
         {   
             if(isset($_SESSION["user"])){
-                header("Location: ?c=juego");
+                if(isset($_SESSION["user"]["idusuario"])<>""){
+                    header("Location: ?c=juego");
+                }
+                
             }      
             require_once("views/login/login.php");
         }
@@ -27,6 +30,7 @@ require_once("models/Usuario_model.php");
                 require("views/login/login.php");
 
             } else {
+                
                 $_SESSION["user"]=$usuarioLogeado;
                 header("Location: ?c=juego");
             }
@@ -34,15 +38,22 @@ require_once("models/Usuario_model.php");
 
         public function cerrarSesion() {
 
+            session_start();
+            session_unset();
+            session_destroy();
+            session_write_close();
+            setcookie(session_name(),$_COOKIE["PHPSESSID"],time()-60);
+
+            session_regenerate_id(true);
+            /*
             // eliminar todas las variables de sesión
             session_unset();
             // destruir la sesión
             session_destroy();
             // refrescar página, sin sesión redirigirá a login
-            header("Refresh:0");
+            */
+            header("Location: ./");
             
         }
 
     }
-
-?>
