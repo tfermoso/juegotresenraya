@@ -42,7 +42,7 @@
 
     <main class="">
         <div class="cotainer-fluid">
-            <div class="row">
+            <div class="row" id="contenidoPartida">
                 <div class="col-2 jugador <?php echo ($usuario['idusuario'] == $partida->getIdJugador1()) ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : ''; ?>"><?php echo $partida->getNombreJugador1(); ?></div>
                 <div class="col-8">
                     <p><?php echo "Estado partida ".$partida->resultadoPartida() ?></p>

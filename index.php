@@ -15,21 +15,22 @@ if (isset($_POST['c'])) {
         cargarAccion($controlador, ACCION_PRINCIPAL);
     }
 } elseif (isset($_GET['c'])) {
-
+    
     $controlador = cargarControlador($_GET['c']);
-
+   
     if (isset($_GET['a']) || isset($_POST[""])) {
-        if (isset($_GET['id'])) {
 
+        if (isset($_GET['id'])) {
             cargarAccion($controlador, $_GET['a'], $_GET['id']);
         } else {
-            cargarAccion($controlador, ACCION_PRINCIPAL);
+            cargarAccion($controlador, $_GET['a']);
         }
     } elseif (isset($_GET['c'])) {
 
         $controlador = cargarControlador($_GET['c']);
-
+      
         if (isset($_GET['a']) || isset($_POST[""])) {
+            
             if (isset($_GET['id'])) {
 
                 cargarAccion($controlador, $_GET['a'], $_GET['id']);

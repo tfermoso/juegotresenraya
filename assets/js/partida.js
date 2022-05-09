@@ -2,7 +2,14 @@ window.onload = function () {
 
 
     setInterval(() =>{
-        location.reload();
+        $.ajax(
+            {
+                url: "?c=api&a=partida",
+                success: function (result) {
+                   $("#contenidoPartida").html(result);
+                }
+            });
+       
     },3000);
     
 }

@@ -6,6 +6,7 @@ class PartidaController
     {
         if (isset($_SESSION["user"])) {
             $usuario = $_SESSION["user"];
+            $_SESSION["idpartida"]=$id;
             $partida = new Partida($id);
             require_once("views/partida/index.php");
         } else {
@@ -28,5 +29,5 @@ class PartidaController
         $ruta = "Location: ./?c=partida&a=jugar&id=" . $idpartida;
         header($ruta);
     }
-    
+
 }
