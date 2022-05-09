@@ -41,7 +41,7 @@ class ApiController
                 $partida = new Partida($idPartida);
             }
             $clase = $usuario['idusuario'] == $partida->getIdJugador1() ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : '';
-            $respuesta .= "<div class='col-2 jugador" . $clase . "'>" . $partida->getNombreJugador1() . "</div>";
+            $respuesta .= "<div class='col-2 jugador " . $clase . "'>" . $partida->getNombreJugador1() . "</div>";
             $respuesta.= "<div class='col-8'> <section id='tablero'>"; 
 
             $celdas = "";
