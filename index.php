@@ -26,6 +26,7 @@ if (isset($_POST['c'])) {
     $controlador = cargarControlador($_GET['c']);
     //Comprobamos si le pasamos acción
     if (isset($_GET['a'])) {
+       
         if (isset($_GET['id'])) {
             cargarAccion($controlador, $_GET['a'], $_GET['id']);
         } else {
