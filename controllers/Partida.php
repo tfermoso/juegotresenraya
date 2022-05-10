@@ -8,6 +8,8 @@ class PartidaController
             $usuario = $_SESSION["user"];
             $_SESSION["idpartida"]=$id;
             $partida = new Partida($id);
+            $resultado=$partida->resultadoPartida();
+
             require_once("views/partida/index.php");
         } else {
             header("Location: ./");

@@ -2,7 +2,6 @@
 require("config/Config.php");
 require("config/database.php");
 require("core/router.php");
-
 session_start();
 /*
 Script principal (Puede recibir los párametros por GET o POSTS)

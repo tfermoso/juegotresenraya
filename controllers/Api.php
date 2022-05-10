@@ -39,15 +39,18 @@ class ApiController
             if (isset($_SESSION["idpartida"])) {
                 $idPartida = $_SESSION["idpartida"];
                 $partida = new Partida($idPartida);
+                $resultado=$partida->resultadoPartida();
             }
             $clase = $usuario['idusuario'] == $partida->getIdJugador1() ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : '';
-            $respuesta .= "<div class='col-2 jugador " . $clase . "'>" . $partida->getNombreJugador1() . "</div>";
+            $color=$usuario['idusuario'] == $partida->getIdJugador1() ?'local':'visitante';
+            $respuesta .= "<div class='col-2 jugador ".$color." " . $clase . "'>" . $partida->getNombreJugador1() . "</div>";
             $respuesta.= "<div class='col-8'> <section id='tablero'>"; 
 
             $celdas = "";
             for ($i = 0; $i < count($partida->getCeldas()); $i++) {
                 $valorCelda = "";
                 if ($partida->getCeldas()[$i] == $usuario["idusuario"]) {
+                    $color='local';
                     $valorCelda = $partida->getCeldas()[$i] == $partida->getIdJugador1() ? "x" : "o";
                 } elseif ($partida->getCeldas()[$i] == -1) {
                     if ($usuario['idusuario'] == $partida->getJugadorActivo()) {
@@ -57,13 +60,32 @@ class ApiController
                     }
                 } else {
                     $valorCelda = $partida->getCeldas()[$i] == $partida->getIdJugador1() ? "x" : "o";
+                    $color='visitante';
                 }
-                $celdas .= "<div class='celda' id='casilla" . $i . "'>" . $valorCelda . "</div>";
+                $celdas .= "<div class='celda ".$color." ' id='casilla" . $i . "'>" . $valorCelda . "</div>";
             }
             $respuesta.=$celdas;
             $respuesta.="</section></div>";
             $clase=($usuario['idusuario'] == $partida->getIdJugador2()) ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : ''; 
-            $respuesta.="<div class='col-2 jugador ".$clase."'>". $partida->getNombreJugador2()."</div>";
+            $color=$usuario['idusuario'] == $partida->getIdJugador2() ?'local':'visitante';
+
+            $respuesta.="<div class='col-2 jugador ".$color." ".$clase."'>". $partida->getNombreJugador2()."</div>";
+            $resultadoPartida="";
+            switch ($resultado) {
+                case 0:
+                     $resultadoPartida="<div id='resultado'>Empate!!</div>";
+                    break;
+                case -1:                
+                    break;
+                case $usuario["idusuario"]:
+                    $resultadoPartida="<div id='resultado'>Has ganado!!</div>";
+                    break;
+                default:
+                $resultadoPartida="<div id='resultado'>Has perdido!!</div>";
+                    break;
+            }
+           
+           $respuesta.=$resultadoPartida;
             echo $respuesta;
             die();
         }

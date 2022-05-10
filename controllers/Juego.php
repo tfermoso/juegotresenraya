@@ -7,7 +7,7 @@ class JuegoController
     public function index()
     {
         if (isset($_SESSION["user"])) {
-            if (isset($_SESSION["user"]["idusuario"]) & $_SESSION["user"]["idusuario"] <> "") {
+            if (isset($_SESSION["user"]["idusuario"]) && $_SESSION["user"]["idusuario"] != "") {
                 $usuario = $_SESSION["user"];
                 $usuarios = new Usuario();
                 $usuarios_online = $usuarios->getUsuariosOnline();
