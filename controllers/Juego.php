@@ -14,7 +14,9 @@ class JuegoController
                 $partidas_enviadas = $usuarios->partidasEnviadas($usuario["idusuario"]);
                 $invitaciones_recibidas = $usuarios->invitacionesrecibidas($usuario["idusuario"]);
                 $partidas_abiertas = $usuarios->partidasAbiertas($usuario["idusuario"]);
+              
                 $mis_partidas = $usuarios->misPartidas($usuario["idusuario"]);
+
                 $activo="juego";
                 require_once("views/juego/index.php");
             }else{

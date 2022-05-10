@@ -100,6 +100,15 @@ class Partida{
        $stm=$this->db->prepare($consulta);
        $stm->execute();
        return $result=$stm->affected_rows;
+
+    }
+
+    public function actualizarEstado()
+    {
+        //Actualizamos el estado de la partida
+       $estadoPartida="UPDATE partida SET resultado=".$this->resultadoPartida()." WHERE (`idpartida` = ".$this->idpartida.")";
+       $stm=$this->db->prepare($estadoPartida);
+       $stm->execute();
     }
 
     public function resultadoPartida()

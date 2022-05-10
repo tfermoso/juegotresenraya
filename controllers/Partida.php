@@ -26,7 +26,8 @@ class PartidaController
             $casilla = "casilla" . $_GET["celda"];
             $partida = new Partida($idpartida);
             $result=$partida->mover($casilla, $usuario["idusuario"],$idpartida);
-            
+            $partida=new Partida($idpartida);
+            $partida->actualizarEstado();
         }
         $ruta = "Location: ./?c=partida&a=jugar&id=" . $idpartida;
         header($ruta);

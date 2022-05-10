@@ -26,7 +26,7 @@
     <main class="">
         <div class="cotainer-fluid">
             <div class="row" id="contenidoPartida">
-                <div class="col-2 jugador <?php echo ($usuario['idusuario'] == $partida->getIdJugador1()) ?'local':'visitante';?>
+                <div class="col-2  jugador <?php echo ($usuario['idusuario'] == $partida->getIdJugador1()) ?'local':'visitante';?>
                  <?php echo ($usuario['idusuario'] == $partida->getIdJugador1()) ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : ''; ?>"><?php echo $partida->getNombreJugador1(); ?></div>
                 <div class="col-8">
                     <section id="tablero">
@@ -56,7 +56,7 @@
 
                     </section>
                 </div>
-                <div class="col-2 jugador <?php echo ($usuario['idusuario'] == $partida->getIdJugador2()) ?'local':'visitante';?> <?php echo ($usuario['idusuario'] == $partida->getIdJugador2()) ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : ''; ?>"><?php echo $partida->getNombreJugador2(); ?></div>
+                <div class="col-2  jugador <?php echo ($usuario['idusuario'] == $partida->getIdJugador2()) ?'local':'visitante';?> <?php echo ($usuario['idusuario'] == $partida->getIdJugador2()) ? ($partida->getJugadorActivo() == $usuario['idusuario'] ? 'miturno' : 'sinturno') : ''; ?>"><?php echo $partida->getNombreJugador2(); ?></div>
                 <?php
         switch ($resultado) {
             case 0:

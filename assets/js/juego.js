@@ -12,7 +12,7 @@ window.onload = function () {
     }, 3000);
 
 
-/*
+
     setInterval(() => {
         $.ajax(
             {
@@ -22,7 +22,7 @@ window.onload = function () {
                 }
             });
     }, 3000);
-*/
+
 
 
     
