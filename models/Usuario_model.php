@@ -147,11 +147,11 @@ class Usuario{
         $partidas=array();
         $consulta="SELECT idpartida,T1.nombre as 'rival',jugador_activo FROM tresenraya.partida T0
         inner join usuario T1 on T1.idusuario=T0.jugador2
-        where T0.jugador1=? and T0.estado=1 
+        where T0.jugador1=? and T0.estado=1 and T0.resultado<0
         union
         SELECT idpartida,T1.nombre as 'rival',jugador_activo FROM tresenraya.partida T0
         inner join usuario T1 on T1.idusuario=T0.jugador1
-        where T0.jugador2=? and T0.estado=1";
+        where T0.jugador2=? and T0.estado=1 and T0.resultado<0";
         $stm=$this->db->prepare($consulta);
         $stm->bind_param("ii",$idusuariolocal,$idusuariolocal);
         $stm->execute();
